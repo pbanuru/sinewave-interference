@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FrequencyControl } from "./FrequencyControl";
 import { Card } from "./ui/card";
+import { Info } from "lucide-react";
 
 export const WaveVisualizer = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -146,6 +147,21 @@ export const WaveVisualizer = () => {
   return (
     <div className="space-y-6">
       <Card className="p-4 bg-slate-800/50 border-slate-700">
+        <div className="flex items-center justify-end gap-4 mb-4">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-0.5 bg-teal-400/60" />
+            <span className="text-sm text-slate-300">Wave 1</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-0.5 bg-rose-400/60" />
+            <span className="text-sm text-slate-300">Wave 2</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-0.5 bg-white/40" />
+            <span className="text-sm text-slate-300">Combined</span>
+          </div>
+          <Info className="text-slate-500" size={16} />
+        </div>
         <canvas
           ref={canvasRef}
           className="w-full h-[300px] rounded-lg"

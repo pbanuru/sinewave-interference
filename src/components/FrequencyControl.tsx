@@ -32,7 +32,7 @@ export const FrequencyControl = ({
           value={[value]}
           onValueChange={(values) => onChange(values[0])}
           min={0.1}
-          max={5}
+          max={1000}
           step={0.1}
           className={`${color === "teal" ? "[&_[role=slider]]:bg-teal-400" : "[&_[role=slider]]:bg-rose-400"}`}
         />
