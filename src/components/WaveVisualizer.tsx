@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import { FrequencyControl } from "./FrequencyControl";
 import { Card } from "./ui/card";
@@ -57,6 +56,24 @@ export const WaveVisualizer = () => {
       oscillator2Ref.current.frequency.setValueAtTime(freq2, audioContextRef.current?.currentTime || 0);
     }
   }, [freq1, freq2]);
+
+  const handleMute1 = (isMuted: boolean) => {
+    if (gainNode1Ref.current) {
+      gainNode1Ref.current.gain.setValueAtTime(
+        isMuted ? 0 : 0.1,
+        audioContextRef.current?.currentTime || 0
+      );
+    }
+  };
+
+  const handleMute2 = (isMuted: boolean) => {
+    if (gainNode2Ref.current) {
+      gainNode2Ref.current.gain.setValueAtTime(
+        isMuted ? 0 : 0.1,
+        audioContextRef.current?.currentTime || 0
+      );
+    }
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -175,12 +192,14 @@ export const WaveVisualizer = () => {
           onChange={setFreq1}
           label="Wave 1 Frequency"
           color="teal"
+          onMute={handleMute1}
         />
         <FrequencyControl
           value={freq2}
           onChange={setFreq2}
           label="Wave 2 Frequency"
           color="rose"
+          onMute={handleMute2}
         />
       </div>
     </div>
